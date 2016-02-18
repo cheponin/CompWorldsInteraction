@@ -1,5 +1,3 @@
-// This game shell was happily copied from Googler Seth Ladd's "Bad Aliens" game and his Google IO talk in 2011
-
 window.requestAnimFrame = (function () {
     return window.requestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
@@ -79,9 +77,7 @@ GameEngine.prototype.addEntity = function (entity) {
 GameEngine.prototype.draw = function () {
     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     this.ctx.save();
-    //console.log(this.entities.length);
     for (var i = 0; i < this.entities.length; i++) {
-        console.log("Drawing entity");
         this.entities[i].draw(this.ctx);
     }
     this.ctx.restore();
@@ -106,7 +102,6 @@ GameEngine.prototype.update = function () {
 }
 
 GameEngine.prototype.loop = function () {
-    console.log("Looping");
     this.clockTick = this.timer.tick();
     this.update();
     this.draw();
@@ -123,12 +118,11 @@ function Entity(game, x, y) {
 }
 
 Entity.prototype.update = function () {
-    //console.log("Updating entity");
+
 }
 
 Entity.prototype.draw = function (ctx) {
     if (this.game.showOutlines && this.radius) {
-        conosole.log("Does this print?");
         this.game.ctx.beginPath();
         this.game.ctx.strokeStyle = "green";
         this.game.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
@@ -149,7 +143,5 @@ Entity.prototype.rotateAndCache = function (image, angle) {
     offscreenCtx.translate(0, 0);
     offscreenCtx.drawImage(image, -(image.width / 2), -(image.height / 2));
     offscreenCtx.restore();
-    //offscreenCtx.strokeStyle = "red";
-    //offscreenCtx.strokeRect(0,0,size,size);
     return offscreenCanvas;
 }
